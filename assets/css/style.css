@@ -508,6 +508,7 @@ img { display: block; max-width: 100%; }
 =========================== */
 @media (max-width: 768px) {
   .section { padding: 64px 0; }
+  .hero { background-position: right center; }
   .hero__quotes { width: 85%; }
   .hide-mobile { display: none; }
 }
