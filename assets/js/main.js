@@ -2,9 +2,8 @@
    HERO QUOTE CAROUSEL
 =========================== */
 (function () {
-  const track  = document.getElementById('carouselTrack');
-  const dotsEl = document.getElementById('carouselDots');
-  if (!track || !dotsEl) return;
+  const track = document.getElementById('carouselTrack');
+  if (!track) return;
 
   const slides = Array.from(track.querySelectorAll('.hq__slide'));
   if (slides.length === 0) return;
@@ -13,21 +12,11 @@
   let autoTimer;
   const AUTO_DELAY = 10000;
 
-  const dots = slides.map((_, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'hq__dot' + (i === 0 ? ' hq__dot--active' : '');
-    btn.setAttribute('aria-label', `Frase ${i + 1}`);
-    btn.addEventListener('click', () => goTo(i));
-    dotsEl.appendChild(btn);
-    return btn;
-  });
-
   function goTo(index) {
-    dots[current].classList.remove('hq__dot--active');
     current = (index + slides.length) % slides.length;
-    track.style.transform = `translateX(-${current * 100}%)`;
+    const slideW = track.parentElement.offsetWidth;
+    track.style.transform = `translateX(-${current * slideW}px)`;
     track.style.transition = 'transform 0.6s cubic-bezier(0.4,0,0.2,1)';
-    dots[current].classList.add('hq__dot--active');
     resetTimer();
   }
 
